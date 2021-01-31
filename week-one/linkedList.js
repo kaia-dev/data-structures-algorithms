@@ -1,3 +1,9 @@
+// Task 1: Please Implement a Linked List 
+// Including it's helper methods:
+// size, clear, getLast, getFirst
+// you should be able to do this from memory
+
+
 class LinkedList {
      constructor() {
          this.head = this.tail = null 
@@ -12,7 +18,7 @@ class LinkedList {
             let oldTail = this.tail
             this.tail = new Node(value)
             oldTail.next = this.tail
-            this.tail.previous = oldTail
+            this.tail.prev = oldTail
         }
      }
      //add a node to the beginning of the list 
@@ -68,6 +74,46 @@ class LinkedList {
             currentNode = currentNode.next
         }
      }
+
+    getSize() {
+        let count = 0 
+        let current = this.head
+        while ( current != null) {
+            count ++
+            current = current.next
+        }
+        return count 
+    }
+
+    clear() {
+        let head = this.head
+        while ( head != null ) {
+            head = head.next
+            head.prev = null
+            this.head = head
+            if(this.tail === this.head) {
+                this.head = null
+                this.tail = null
+                return "Successfully cleared list"
+            }
+        }
+    }
+
+    //note: I think that this solution does work, but the value of this.tail and this.head is literally null and those nodes still seem to exist inside of the linked list in memmory. 
+    //what is weird though, is that when I call getSize() on the list it returns 0 
+    //what does this say about my linked list's position in memory? Is it still there in some form?
+    //is it a GHOOOOOOSSSSSTTTTT??!?!??!?!?!? ~ ~ ( > ")>  < BOO MITCH!!! I'm back!) ผ(•̀_•́ผ) < You little!!!!)
+    //Here is what I called to clear the list and confirm it was dead and burried. 
+        //list.clear()
+        //return list.getSize()
+
+    getFirst() {
+        return this.head.value
+    }
+
+    getLast() {
+        return this.tail.value
+    }
 }
 
 class Node {
@@ -82,3 +128,5 @@ let list = new LinkedList()
 list.append(1)
 list.append(2)
 list.append(3)
+list.append("Monkey")
+
